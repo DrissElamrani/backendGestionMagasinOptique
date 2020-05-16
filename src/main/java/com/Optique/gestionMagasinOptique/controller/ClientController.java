@@ -48,7 +48,6 @@ public class ClientController {
 	public ClientDao getClientDao() {
 		return clientDao;
 	}
-	public void test() {}
 	public void setClientDao(ClientDao clientDao) {
 		this.clientDao = clientDao;
 	}
