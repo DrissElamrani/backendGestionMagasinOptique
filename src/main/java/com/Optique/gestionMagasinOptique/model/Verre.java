@@ -17,4 +17,52 @@ public class Verre extends Produit{
 	   private String nature;
 	   /** @pdOid 60d8f6d1-55ac-40d8-8a91-170fee865bee */
 	   private String oeilGaucheDroit;
+	public Float getSph() {
+		return sph;
+	}
+	public void setSph(Float sph) {
+		this.sph = sph;
+	}
+	public float getCyl() {
+		return cyl;
+	}
+	public void setCyl(float cyl) {
+		this.cyl = cyl;
+	}
+	public Float getAxe() {
+		return axe;
+	}
+	public void setAxe(Float axe) {
+		this.axe = axe;
+	}
+	public float getAddV() {
+		return addV;
+	}
+	public void setAddV(float addV) {
+		this.addV = addV;
+	}
+	public Float getVisionPres() {
+		return visionPres;
+	}
+	public void setVisionPres(Float visionPres) {
+		this.visionPres = visionPres;
+	}
+	public Float getVisionLoin() {
+		return visionLoin;
+	}
+	public void setVisionLoin(Float visionLoin) {
+		this.visionLoin = visionLoin;
+	}
+	public String getNature() {
+		return nature;
+	}
+	public void setNature(String nature) {
+		this.nature = nature;
+	}
+	public String getOeilGaucheDroit() {
+		return oeilGaucheDroit;
+	}
+	public void setOeilGaucheDroit(String oeilGaucheDroit) {
+		this.oeilGaucheDroit = oeilGaucheDroit;
+	}
 }

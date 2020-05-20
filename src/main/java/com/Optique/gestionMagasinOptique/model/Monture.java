@@ -5,4 +5,16 @@ public class Monture extends Produit{
 	   private String categorie;
 	   /** @pdOid edba20b4-77f8-4965-aca4-f6bd1d8eb31f */
 	   private String type;
+	public String getCategorie() {
+		return categorie;
+	}
+	public void setCategorie(String categorie) {
+		this.categorie = categorie;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 }

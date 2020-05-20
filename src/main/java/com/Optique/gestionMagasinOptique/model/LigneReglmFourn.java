@@ -10,4 +10,35 @@ public class LigneReglmFourn {
 	   
 	   private ReglementFourn reglementFournB;
 	   private CommandeFourn commandeFourn;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getDateCreation() {
+		return dateCreation;
+	}
+	public void setDateCreation(String dateCreation) {
+		this.dateCreation = dateCreation;
+	}
+	public float getMontant() {
+		return montant;
+	}
+	public void setMontant(float montant) {
+		this.montant = montant;
+	}
+	public ReglementFourn getReglementFournB() {
+		return reglementFournB;
+	}
+	public void setReglementFournB(ReglementFourn reglementFournB) {
+		this.reglementFournB = reglementFournB;
+	}
+	public CommandeFourn getCommandeFourn() {
+		return commandeFourn;
+	}
+	public void setCommandeFourn(CommandeFourn commandeFourn) {
+		this.commandeFourn = commandeFourn;
+	}
+	   
 }

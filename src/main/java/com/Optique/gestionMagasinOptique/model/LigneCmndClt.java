@@ -11,4 +11,46 @@ public class LigneCmndClt {
 	   public Produit produitB;
 	   
 	   private CommandeClt commandeClt;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getPrixUnitaire() {
+		return prixUnitaire;
+	}
+
+	public void setPrixUnitaire(int prixUnitaire) {
+		this.prixUnitaire = prixUnitaire;
+	}
+
+	public int getQteCmdee() {
+		return qteCmdee;
+	}
+
+	public void setQteCmdee(int qteCmdee) {
+		this.qteCmdee = qteCmdee;
+	}
+
+	public Produit getProduitB() {
+		return produitB;
+	}
+
+	public void setProduitB(Produit produitB) {
+		this.produitB = produitB;
+	}
+
+	public CommandeClt getCommandeClt() {
+		return commandeClt;
+	}
+
+	public void setCommandeClt(CommandeClt commandeClt) {
+		this.commandeClt = commandeClt;
+	}
+	   
+	   
 }

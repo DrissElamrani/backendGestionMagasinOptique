@@ -9,4 +9,36 @@ public class UserDroit {
 	   private Droit droitB;
 	   
 	   private User user;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getDateCreation() {
+		return dateCreation;
+	}
+
+	public void setDateCreation(String dateCreation) {
+		this.dateCreation = dateCreation;
+	}
+
+	public Droit getDroitB() {
+		return droitB;
+	}
+
+	public void setDroitB(Droit droitB) {
+		this.droitB = droitB;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 }

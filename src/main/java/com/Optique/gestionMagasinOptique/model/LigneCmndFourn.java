@@ -10,4 +10,44 @@ public class LigneCmndFourn {
 	   private Produit produitB;
 	   
 	   private CommandeFourn commandeFourn;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public float getPrixUnitaire() {
+		return prixUnitaire;
+	}
+
+	public void setPrixUnitaire(float prixUnitaire) {
+		this.prixUnitaire = prixUnitaire;
+	}
+
+	public int getQteCmdee() {
+		return qteCmdee;
+	}
+
+	public void setQteCmdee(int qteCmdee) {
+		this.qteCmdee = qteCmdee;
+	}
+
+	public Produit getProduitB() {
+		return produitB;
+	}
+
+	public void setProduitB(Produit produitB) {
+		this.produitB = produitB;
+	}
+
+	public CommandeFourn getCommandeFourn() {
+		return commandeFourn;
+	}
+
+	public void setCommandeFourn(CommandeFourn commandeFourn) {
+		this.commandeFourn = commandeFourn;
+	}
 }

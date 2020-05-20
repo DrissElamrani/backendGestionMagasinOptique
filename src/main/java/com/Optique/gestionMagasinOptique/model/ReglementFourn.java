@@ -9,4 +9,36 @@ public class ReglementFourn {
 	   private float montantRest;
 	   
 	   private Fournisseur fournisseur;
+
+	public int getIdReglmFourn() {
+		return idReglmFourn;
+	}
+
+	public void setIdReglmFourn(int idReglmFourn) {
+		this.idReglmFourn = idReglmFourn;
+	}
+
+	public float getMontantTotal() {
+		return montantTotal;
+	}
+
+	public void setMontantTotal(float montantTotal) {
+		this.montantTotal = montantTotal;
+	}
+
+	public float getMontantRest() {
+		return montantRest;
+	}
+
+	public void setMontantRest(float montantRest) {
+		this.montantRest = montantRest;
+	}
+
+	public Fournisseur getFournisseur() {
+		return fournisseur;
+	}
+
+	public void setFournisseur(Fournisseur fournisseur) {
+		this.fournisseur = fournisseur;
+	}
 }

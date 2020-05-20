@@ -23,4 +23,71 @@ public class Fournisseur {
 	   private String dateCreation;
 	   /** @pdOid b4bf7c31-ccf4-4e83-8d50-4ec485e0f994 */
 	   private String dateModification;
+	public int getIdFourn() {
+		return idFourn;
+	}
+	public void setIdFourn(int idFourn) {
+		this.idFourn = idFourn;
+	}
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	public String getTel1() {
+		return tel1;
+	}
+	public void setTel1(String tel1) {
+		this.tel1 = tel1;
+	}
+	public String getTel2() {
+		return tel2;
+	}
+	public void setTel2(String tel2) {
+		this.tel2 = tel2;
+	}
+	public String getTel3() {
+		return tel3;
+	}
+	public void setTel3(String tel3) {
+		this.tel3 = tel3;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getAddresse() {
+		return addresse;
+	}
+	public void setAddresse(String addresse) {
+		this.addresse = addresse;
+	}
+	public String getIce() {
+		return ice;
+	}
+	public void setIce(String ice) {
+		this.ice = ice;
+	}
+	public String getFax() {
+		return fax;
+	}
+	public void setFax(String fax) {
+		this.fax = fax;
+	}
+	public String getDateCreation() {
+		return dateCreation;
+	}
+	public void setDateCreation(String dateCreation) {
+		this.dateCreation = dateCreation;
+	}
+	public String getDateModification() {
+		return dateModification;
+	}
+	public void setDateModification(String dateModification) {
+		this.dateModification = dateModification;
+	}
+	   
 }

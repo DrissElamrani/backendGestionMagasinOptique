@@ -10,4 +10,44 @@ public class LigneReglmClt {
 	   public ReglementClt reglementCltB;
 	   
 	   private CommandeClt commandeClt;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getDateCreation() {
+		return dateCreation;
+	}
+
+	public void setDateCreation(String dateCreation) {
+		this.dateCreation = dateCreation;
+	}
+
+	public float getMontant() {
+		return montant;
+	}
+
+	public void setMontant(float montant) {
+		this.montant = montant;
+	}
+
+	public ReglementClt getReglementCltB() {
+		return reglementCltB;
+	}
+
+	public void setReglementCltB(ReglementClt reglementCltB) {
+		this.reglementCltB = reglementCltB;
+	}
+
+	public CommandeClt getCommandeClt() {
+		return commandeClt;
+	}
+
+	public void setCommandeClt(CommandeClt commandeClt) {
+		this.commandeClt = commandeClt;
+	}
 }

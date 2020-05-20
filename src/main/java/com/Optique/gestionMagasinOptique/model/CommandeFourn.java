@@ -7,4 +7,30 @@ public class CommandeFourn {
 	   private String dateCommande;
 	   
 	   private Fournisseur fournisseur;
+
+	public int getIdCmdeeFourn() {
+		return idCmdeeFourn;
+	}
+
+	public void setIdCmdeeFourn(int idCmdeeFourn) {
+		this.idCmdeeFourn = idCmdeeFourn;
+	}
+
+	public String getDateCommande() {
+		return dateCommande;
+	}
+
+	public void setDateCommande(String dateCommande) {
+		this.dateCommande = dateCommande;
+	}
+
+	public Fournisseur getFournisseur() {
+		return fournisseur;
+	}
+
+	public void setFournisseur(Fournisseur fournisseur) {
+		this.fournisseur = fournisseur;
+	}
+	   
+	   
 }

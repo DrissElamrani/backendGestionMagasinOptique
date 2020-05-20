@@ -15,4 +15,48 @@ public class Lentille extends Produit{
 	   private String nature;
 	   /** @pdOid d712eda1-2f31-406d-bd04-d22773811e20 */
 	   private String type;
+	public Float getSph() {
+		return sph;
+	}
+	public void setSph(Float sph) {
+		this.sph = sph;
+	}
+	public Float getCyl() {
+		return cyl;
+	}
+	public void setCyl(Float cyl) {
+		this.cyl = cyl;
+	}
+	public Float getAxe() {
+		return axe;
+	}
+	public void setAxe(Float axe) {
+		this.axe = axe;
+	}
+	public Float getRc() {
+		return rc;
+	}
+	public void setRc(Float rc) {
+		this.rc = rc;
+	}
+	public String getOeilGaucheDroit() {
+		return oeilGaucheDroit;
+	}
+	public void setOeilGaucheDroit(String oeilGaucheDroit) {
+		this.oeilGaucheDroit = oeilGaucheDroit;
+	}
+	public String getNature() {
+		return nature;
+	}
+	public void setNature(String nature) {
+		this.nature = nature;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	   
+	   
 }

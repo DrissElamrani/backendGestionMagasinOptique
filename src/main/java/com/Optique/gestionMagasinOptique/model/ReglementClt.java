@@ -9,4 +9,36 @@ public class ReglementClt {
 	   private float montantRest;
 	   
 	   private Client client;
+
+	public int getIdReglmClt() {
+		return idReglmClt;
+	}
+
+	public void setIdReglmClt(int idReglmClt) {
+		this.idReglmClt = idReglmClt;
+	}
+
+	public float getMontantTotal() {
+		return montantTotal;
+	}
+
+	public void setMontantTotal(float montantTotal) {
+		this.montantTotal = montantTotal;
+	}
+
+	public float getMontantRest() {
+		return montantRest;
+	}
+
+	public void setMontantRest(float montantRest) {
+		this.montantRest = montantRest;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
 }
