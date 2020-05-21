@@ -15,32 +15,32 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Entity
 public class Client {
 
-	 @Id
-		@SequenceGenerator(name = "CLIENT_ID_SEQ", sequenceName = "CLIENT_ID_SEQ", allocationSize = 1)
-	    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CLIENT_ID_SEQ")
-//	 @GeneratedValue(strategy=GenerationType.AUTO)
-//	 @GeneratedValue
-	   private int idClt;
-	   /** @pdOid 1545baf3-d84e-4ff0-8483-2cd24bcb60c5 */
-	   private String nom;
-	   /** @pdOid 0e900eae-46a6-4b72-87e6-1dc2a0aff6f0 */
-	   private String prenom;
-	   /** @pdOid 86cdd1a0-51f3-4a3f-ae2d-57f98e64221d */
-	   private int numero;
-	   /** @pdOid bf33ec4b-95bc-4006-b29f-146163c35381 */
-	   private String addresse;
-	   /** @pdOid fac8033b-dd30-4ab6-8878-f46d8e724e10 */
-	   private String mutuelle;
-	   /** @pdOid 3c39fb36-ad5d-4af0-8df0-62be426b2734 */
-	   private String dateCreation;
-	   private String dateModification;
-	   /** @pdOid fd2aae80-c4c6-444c-b06b-441ee90dfd6c */
-	   private String remarque;
-	   private String email;
-//	   @Length(min=9, max=10, message = "le Numero de telephone doit étre égale 10 chiffre")
-	   private String telephone;
-	
-	   
+	@Id
+	@SequenceGenerator(name = "CLIENT_ID_SEQ", sequenceName = "CLIENT_ID_SEQ", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CLIENT_ID_SEQ")
+	// @GeneratedValue(strategy=GenerationType.AUTO)
+	// @GeneratedValue
+	private int idClt;
+	/** @pdOid 1545baf3-d84e-4ff0-8483-2cd24bcb60c5 */
+	private String nom;
+	/** @pdOid 0e900eae-46a6-4b72-87e6-1dc2a0aff6f0 */
+	private String prenom;
+	/** @pdOid 86cdd1a0-51f3-4a3f-ae2d-57f98e64221d */
+	private int numero;
+	/** @pdOid bf33ec4b-95bc-4006-b29f-146163c35381 */
+	private String addresse;
+	/** @pdOid fac8033b-dd30-4ab6-8878-f46d8e724e10 */
+	private String mutuelle;
+	/** @pdOid 3c39fb36-ad5d-4af0-8df0-62be426b2734 */
+	private String dateCreation;
+	private String dateModification;
+	/** @pdOid fd2aae80-c4c6-444c-b06b-441ee90dfd6c */
+	private String remarque;
+	private String email;
+	// @Length(min=9, max=10, message = "le Numero de telephone doit étre égale 10
+	// chiffre")
+	private String telephone;
+
 	public String getDateModification() {
 		return dateModification;
 	}
@@ -129,10 +129,8 @@ public class Client {
 		this.telephone = telephone;
 	}
 
-
-
-	public Client(String nom, String prenom, int numero, String addresse, String mutuelle,
-			String dateCreation, String remarque, String email, String telephone,String datemodification) {
+	public Client(String nom, String prenom, int numero, String addresse, String mutuelle, String dateCreation,
+			String remarque, String email, String telephone, String datemodification) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.numero = numero;
@@ -142,20 +140,19 @@ public class Client {
 		this.remarque = remarque;
 		this.email = email;
 		this.telephone = telephone;
-		this.dateModification=datemodification;
+		this.dateModification = datemodification;
 	}
 
+	// public Client(String nom, String prenom) {
+	// super();
+	// this.nom = nom;
+	// this.prenom = prenom;
+	// }
 
-//	public Client(String nom, String prenom) {
-//		super();
-//		this.nom = nom;
-//		this.prenom = prenom;
-//	}
-
-//	@Override
-//	public String toString() {
-//		return "Client [nom=" + nom + ", prenom=" + prenom + "]";
-//	}
+	// @Override
+	// public String toString() {
+	// return "Client [nom=" + nom + ", prenom=" + prenom + "]";
+	// }
 
 	@Override
 	public String toString() {
@@ -163,11 +160,9 @@ public class Client {
 				+ addresse + ", mutuelle=" + mutuelle + ", dateCreation=" + dateCreation + ", dateModification="
 				+ dateModification + ", remarque=" + remarque + ", email=" + email + ", telephone=" + telephone + "]";
 	}
+
 	public Client() {
 		super();
 	}
-	
 
-	
-	
 }
