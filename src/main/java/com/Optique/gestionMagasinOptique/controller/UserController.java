@@ -66,8 +66,8 @@ public class UserController {
 //		Boolean user = userDao.getUserByloginPass(login, pass);
 		User user = userDao.getUserByloginPass(login, pass);
 		if (user==null)
-			return ResponseEntity.noContent().build();
-		return ResponseEntity.ok(user);
+			return ResponseEntity.notFound().build();
+		return ResponseEntity.ok().body(user);
 	}
 
 	// @GetMapping(value = "Users/{id}/Nom")
