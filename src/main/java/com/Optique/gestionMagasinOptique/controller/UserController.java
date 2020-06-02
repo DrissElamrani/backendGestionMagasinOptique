@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -61,12 +62,12 @@ public class UserController {
 		return ResponseEntity.ok(user);
 	}
 	
-	@GetMapping(value = "/Users/{login}/{pass}")
-	public ResponseEntity<User> auth(@PathVariable String login,@PathVariable String pass) {
-//		Boolean user = userDao.getUserByloginPass(login, pass);
-		User user = userDao.getUserByloginPass(login, pass);
+	@PostMapping(value="/user/auth")
+	public ResponseEntity<User> auth(@RequestBody User user) {
+		
+		/*User user = userDao.getUserByloginPass(login, pass);
 		if (user==null)
-			return ResponseEntity.notFound().build();
+			return ResponseEntity.notFound().build();*/
 		return ResponseEntity.ok().body(user);
 	}
 
