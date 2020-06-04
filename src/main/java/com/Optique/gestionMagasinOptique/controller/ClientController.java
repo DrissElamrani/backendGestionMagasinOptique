@@ -57,34 +57,34 @@ public class ClientController {
 	String dateNow = formatdate.format(date);
 	return dateNow;
 	}
-	// Clients
-	@GetMapping(value = "/Clients")
+	// get List Clients
+	@GetMapping(value = "/clients/list")
 	public List<Client> listClients() {
 		List<Client> listClient = clientDao.findAll();
 		return listClient;
 	}
 
-	// client/{id}
-	@GetMapping(value = "/Clients/{id}/{idUser}")
-	public ResponseEntity<Client> afficherUnClient(@PathVariable int id, @PathVariable int idUser) {
+	// get client by id
+	@GetMapping(value = "/clients/{id}")
+	public ResponseEntity<Client> afficherUnClient(@PathVariable int id) {
 		Client clt = clientDao.findById(id);
 		if (clt == null)
 			return ResponseEntity.notFound().build();
 		return ResponseEntity.ok(clt);
 	}
 
-	@GetMapping(value = "/Clients/{id}/Nom")
-	public String getNomById(@PathVariable int id) throws ClientIntrouvableException {
-		String Nom = clientDao.getNomById(id);
-		if (Nom == null)
-			throw new ClientIntrouvableException("Le produit avec l'id " + id + "  n'existe pas");
-
-		return Nom;
-	}
+//	@GetMapping(value = "/Clients/{id}/Nom")
+//	public String getNomById(@PathVariable int id) throws ClientIntrouvableException {
+//		String Nom = clientDao.getNomById(id);
+//		if (Nom == null)
+//			throw new ClientIntrouvableException("Le produit avec l'id " + id + "  n'existe pas");
+//
+//		return Nom;
+//	}
 
 	// ajouter un clients
-	@PostMapping(value = "/Clients/{idUser}")
-	public ResponseEntity<Void> ajouterProduit(@RequestBody Client client, @PathVariable int idUser) {
+	@PostMapping(value = "/clients/create")
+	public ResponseEntity<Void> ajouterProduit(@RequestBody Client client) {
 		client.setDateCreation(getDateNow());
 		Client clt = clientDao.save(client);
 		if (clt == null)
@@ -95,10 +95,9 @@ public class ClientController {
 			return ResponseEntity.created(location).build();
 		}
 	}
-
-	@PutMapping("/Clients/{id}/{idUser}")
-	ResponseEntity<Client> updateEmployee(@RequestBody Client newClient, @PathVariable Integer id,
-			@PathVariable int idUser) {
+//	modifier un client By id
+	@PutMapping("/clients/{id}/update")
+	ResponseEntity<Client> updateEmployee(@RequestBody Client newClient, @PathVariable Integer id) {
 		Optional<Object> clt = clientDao.findById(id).map(client -> {
 			client.setNom(newClient.getNom());
 			client.setPrenom(newClient.getPrenom());
@@ -117,20 +116,12 @@ public class ClientController {
 
 		return ResponseEntity.ok().build();
 	}
-
-	@DeleteMapping("/Clients/{id}/{idUser}")
-	ResponseEntity<Void> deleteClient(@PathVariable Integer id, @PathVariable Integer idUser) {
+//	supprimerS un client By id
+	@DeleteMapping("/clients/{id}/delete")
+	ResponseEntity<Void> deleteClient(@PathVariable Integer id) {
 		Optional<Client> findClientbyid = clientDao.findById(id);
 		if (findClientbyid.isPresent()) {
 			clientDao.deleteById(id);
-
-			// UserJournals journal = new UserJournals();
-			// journal.setAction("Supprimer Client Numero :
-			// "+findClientbyid.get().getNumero());
-			// journal.setDateAction(new Date());
-			// journal.setIduser(idUser);
-			// journalUserDao.save(journal);
-
 			return ResponseEntity.ok().build();
 		}
 

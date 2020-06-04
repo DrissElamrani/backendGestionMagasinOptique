@@ -2,24 +2,20 @@ package com.Optique.gestionMagasinOptique.dao;
 
 
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.Optique.gestionMagasinOptique.model.Client;
+import com.Optique.gestionMagasinOptique.model.Fournisseur;
 @Repository
-public interface ClientDao extends JpaRepository<Client, Integer> {
+public interface FournisseurDao extends JpaRepository<Fournisseur, Integer>{
 	
-	 public Client findById(int id);
-
-//	 String req="SELECT nom FROM Client c WHERE TO_DATE('c.dateCreation', 'YYYY/MM/DD') between  TO_DATE("+datedebut+", 'YYYY/MM/DD') and TO_DATE("+datefin+", 'YYYY/MM/DD')";
-     String req="";
+//	public List <Client> findall();
+	 public Fournisseur findById(int id);
 	 
-     @Query(req)
-	 public List<Client> searchClient(@Param("id") int id);
+//	 @org.springframework.data.jpa.repository.Query("SELECT nom FROM Client c WHERE c.idClt=:id")
+//	 public String getNomById(@Param("id") int id);
 
 	 
 //	 @Transactional

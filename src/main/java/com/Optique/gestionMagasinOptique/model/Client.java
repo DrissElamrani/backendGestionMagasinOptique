@@ -26,7 +26,7 @@ public class Client {
 	/** @pdOid 0e900eae-46a6-4b72-87e6-1dc2a0aff6f0 */
 	private String prenom;
 	/** @pdOid 86cdd1a0-51f3-4a3f-ae2d-57f98e64221d */
-	private int numero;
+	private String  numero;
 	/** @pdOid bf33ec4b-95bc-4006-b29f-146163c35381 */
 	private String addresse;
 	/** @pdOid fac8033b-dd30-4ab6-8878-f46d8e724e10 */
@@ -73,11 +73,13 @@ public class Client {
 		this.prenom = prenom;
 	}
 
-	public int getNumero() {
+
+
+	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(int numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 
@@ -129,7 +131,7 @@ public class Client {
 		this.telephone = telephone;
 	}
 
-	public Client(String nom, String prenom, int numero, String addresse, String mutuelle, String dateCreation,
+	public Client(String nom, String prenom, String numero, String addresse, String mutuelle, String dateCreation,
 			String remarque, String email, String telephone, String datemodification) {
 		this.nom = nom;
 		this.prenom = prenom;
