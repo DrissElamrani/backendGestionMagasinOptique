@@ -26,4 +26,7 @@ public class Monture extends Produit {
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	
+	
 }

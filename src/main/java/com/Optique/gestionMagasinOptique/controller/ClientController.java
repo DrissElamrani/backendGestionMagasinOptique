@@ -72,16 +72,6 @@ public class ClientController {
 			return ResponseEntity.notFound().build();
 		return ResponseEntity.ok(clt);
 	}
-
-//	@GetMapping(value = "/Clients/{id}/Nom")
-//	public String getNomById(@PathVariable int id) throws ClientIntrouvableException {
-//		String Nom = clientDao.getNomById(id);
-//		if (Nom == null)
-//			throw new ClientIntrouvableException("Le produit avec l'id " + id + "  n'existe pas");
-//
-//		return Nom;
-//	}
-
 	// ajouter un clients
 	@PostMapping(value = "/clients/create")
 	public ResponseEntity<Void> ajouterProduit(@RequestBody Client client) {

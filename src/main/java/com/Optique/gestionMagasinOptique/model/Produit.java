@@ -76,4 +76,6 @@ public class Produit {
 	public void setDateModification(String dateModification) {
 		this.dateModification = dateModification;
 	}
+
+	
 }

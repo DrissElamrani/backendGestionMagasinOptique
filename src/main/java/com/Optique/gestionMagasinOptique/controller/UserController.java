@@ -48,7 +48,7 @@ public class UserController {
 	}
 
 	// Users
-	@GetMapping(value = "/Users")
+	@GetMapping(value = "/Users/list")
 	public List<User> listUser() {
 		return userDao.findAll();
 	}
@@ -70,17 +70,6 @@ public class UserController {
 			return ResponseEntity.notFound().build();*/
 		return ResponseEntity.ok().body(user);
 	}
-
-	// @GetMapping(value = "Users/{id}/Nom")
-	// public String getNomById(@PathVariable int id) throws
-	// ClientIntrouvableException {
-	// String Nom = clientDao.getNomById(id);
-	// if (Nom == null)
-	// throw new ClientIntrouvableException("Le produit avec l'id " + id + "
-	// n'existe pas");
-	//
-	// return Nom;
-	// }
 
 	// ajouter un User
 	@PostMapping(value = "/Users")

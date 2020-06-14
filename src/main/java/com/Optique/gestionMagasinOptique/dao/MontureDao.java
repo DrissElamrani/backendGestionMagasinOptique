@@ -10,10 +10,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.Optique.gestionMagasinOptique.model.Client;
+import com.Optique.gestionMagasinOptique.model.Monture;
 @Repository
-public interface ClientDao extends JpaRepository<Client, Integer> {
+public interface MontureDao extends JpaRepository<Monture, Integer> {
 	
-	 public Client findById(int id);
+	 public Monture findById(int id);
 
 //	 String req="SELECT nom FROM Client c WHERE TO_DATE('c.dateCreation', 'YYYY/MM/DD') between  TO_DATE("+datedebut+", 'YYYY/MM/DD') and TO_DATE("+datefin+", 'YYYY/MM/DD')";
 //     String req="";
