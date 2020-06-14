@@ -73,7 +73,7 @@ public class MontureController {
 	}
 	// ajouter un montures
 	@PostMapping(value = "/montures/create")
-	public ResponseEntity<Void> ajouterProduit(@RequestBody Monture monture) {
+	public ResponseEntity<Void> ajoutermonture(@RequestBody Monture monture) {
 		monture.setDateCreation(getDateNow());
 		Monture mon = montureDao.save(monture);
 		if (mon == null)
@@ -86,7 +86,7 @@ public class MontureController {
 	}
 //	modifier un monture By id
 	@PutMapping("/montures/{id}/update")
-	ResponseEntity<Monture> updateEmployee(@RequestBody Monture newmonture, @PathVariable Integer id) {
+	ResponseEntity<Monture> updatemonture(@RequestBody Monture newmonture, @PathVariable Integer id) {
 		Optional<Object> montr = montureDao.findById(id).map(monture -> {
 			monture.setType(newmonture.getType());
 			monture.setQteProd(newmonture.getQteProd());
