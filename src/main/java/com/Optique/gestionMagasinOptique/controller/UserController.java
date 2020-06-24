@@ -74,6 +74,7 @@ public class UserController {
 	// ajouter un User
 	@PostMapping(value = "/Users")
 	public ResponseEntity<Void> ajouterProduit(@RequestBody User user) {
+		user.setMotdepasse("1");
 		User newuser = userDao.save(user);
 		if (newuser == null)
 			ResponseEntity.noContent().build();
@@ -86,7 +87,7 @@ public class UserController {
 	}
 
 	@PutMapping("/Users/{id}")
-	ResponseEntity<User> updateEmployee(@RequestBody User newUser, @PathVariable Integer id) {
+	ResponseEntity<User> updateUser(@RequestBody User newUser, @PathVariable Integer id) {
 		Optional<Object> use = userDao.findById(id).map(user -> {
 			user.setNom(newUser.getNom());
 			user.setPrenom(newUser.getPrenom());
@@ -95,6 +96,19 @@ public class UserController {
 			user.setMotdepasse(newUser.getMotdepasse());
 			user.setTel(newUser.getTel());
 			user.setAddresse(newUser.getAddresse());
+			User us = userDao.save(user);
+			return ResponseEntity.ok(us);
+		});
+		if (!use.isPresent())
+			return ResponseEntity.noContent().build();
+
+		return ResponseEntity.ok().build();
+	}
+	//réinitialisée mot de passe
+	@PutMapping("/Users/{id}/update/pwd")
+	ResponseEntity<User> reinitialise(@PathVariable Integer id) {
+		Optional<Object> use = userDao.findById(id).map(user -> {
+			user.setMotdepasse("1");
 			User us = userDao.save(user);
 			return ResponseEntity.ok(us);
 		});

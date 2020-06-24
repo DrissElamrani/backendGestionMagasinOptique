@@ -76,6 +76,11 @@ public class ClientController {
 	@PostMapping(value = "/clients/create")
 	public ResponseEntity<Void> ajouterProduit(@RequestBody Client client) {
 		client.setDateCreation(getDateNow());
+		String nom=client.getNom().substring(0, 2);
+		String prenom=client.getPrenom().substring(0, 2);
+		String annee=client.getDateCreation().substring(0, 4);
+		String num=nom+prenom+"_"+annee;
+		client.setNumero(num);
 		Client clt = clientDao.save(client);
 		if (clt == null)
 			return ResponseEntity.noContent().build();
@@ -87,7 +92,7 @@ public class ClientController {
 	}
 //	modifier un client By id
 	@PutMapping("/clients/{id}/update")
-	ResponseEntity<Client> updateEmployee(@RequestBody Client newClient, @PathVariable Integer id) {
+	ResponseEntity<Client> updateClient(@RequestBody Client newClient, @PathVariable Integer id) {
 		Optional<Object> clt = clientDao.findById(id).map(client -> {
 			client.setNom(newClient.getNom());
 			client.setPrenom(newClient.getPrenom());
