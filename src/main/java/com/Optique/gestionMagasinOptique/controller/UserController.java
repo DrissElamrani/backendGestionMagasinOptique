@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.Optique.gestionMagasinOptique.dao.UserDao;
+import com.Optique.gestionMagasinOptique.model.Monture;
 import com.Optique.gestionMagasinOptique.model.User;
 
 /**
@@ -50,7 +51,7 @@ public class UserController {
 	// Users
 	@GetMapping(value = "/Users/list")
 	public List<User> listUser() {
-		return userDao.findAll();
+		return userDao.listUser();
 	}
 
 	// Users/{id}
@@ -73,8 +74,9 @@ public class UserController {
 
 	// ajouter un User
 	@PostMapping(value = "/Users")
-	public ResponseEntity<Void> ajouterProduit(@RequestBody User user) {
+	public ResponseEntity<Void> ajouterUser(@RequestBody User user) {
 		user.setMotdepasse("1");
+		user.setStatus("1");
 		User newuser = userDao.save(user);
 		if (newuser == null)
 			ResponseEntity.noContent().build();
@@ -118,14 +120,29 @@ public class UserController {
 		return ResponseEntity.ok().build();
 	}
 
+//	@DeleteMapping("/Users/{id}")
+//	ResponseEntity<Void> deleteUser(@PathVariable Integer id) {
+//		Optional<User> findUserbyid = userDao.findById(id);
+//		if (findUserbyid.isPresent()) {
+//			userDao.deleteById(id);
+//			return ResponseEntity.ok().build();
+//		}
+//
+//		return ResponseEntity.noContent().build();
+//	}
+	
+////supprimerS un user By id
 	@DeleteMapping("/Users/{id}")
-	ResponseEntity<Void> deleteUser(@PathVariable Integer id) {
-		Optional<User> findUserbyid = userDao.findById(id);
-		if (findUserbyid.isPresent()) {
-			userDao.deleteById(id);
-			return ResponseEntity.ok().build();
-		}
+	ResponseEntity<Void> supprimerUser (@PathVariable Integer id) {
+		Optional<Object> us = userDao.findById(id).map(user -> {
+			user.setStatus("0");
+			User user1 = userDao.save(user);
 
-		return ResponseEntity.noContent().build();
+			return ResponseEntity.ok(user1);
+		});
+		if (!us.isPresent())
+			return ResponseEntity.noContent().build();
+
+		return ResponseEntity.ok().build();
 	}
 }

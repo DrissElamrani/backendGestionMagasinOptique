@@ -28,6 +28,7 @@ import com.Optique.gestionMagasinOptique.dao.ClientDao;
 import com.Optique.gestionMagasinOptique.dao.JournalUserDao;
 import com.Optique.gestionMagasinOptique.model.Client;
 //import com.Optique.gestionMagasinOptique.model.UserJournals;
+import com.Optique.gestionMagasinOptique.model.LigneReglmClt;
 
 /**
  * @author pcuser9
@@ -60,7 +61,7 @@ public class ClientController {
 	// get List Clients
 	@GetMapping(value = "/clients/list")
 	public List<Client> listClients() {
-		List<Client> listClient = clientDao.findAll();
+		List<Client> listClient = clientDao.listClient();
 		return listClient;
 	}
 
@@ -74,13 +75,14 @@ public class ClientController {
 	}
 	// ajouter un clients
 	@PostMapping(value = "/clients/create")
-	public ResponseEntity<Void> ajouterProduit(@RequestBody Client client) {
+	public ResponseEntity<Void> ajouterClient(@RequestBody Client client) {
 		client.setDateCreation(getDateNow());
 		String nom=client.getNom().substring(0, 2);
 		String prenom=client.getPrenom().substring(0, 2);
 		String annee=client.getDateCreation().substring(0, 4);
 		String num=nom+prenom+"_"+annee;
 		client.setNumero(num);
+		client.setStatus("1");
 		Client clt = clientDao.save(client);
 		if (clt == null)
 			return ResponseEntity.noContent().build();
@@ -111,15 +113,31 @@ public class ClientController {
 
 		return ResponseEntity.ok().build();
 	}
-//	supprimerS un client By id
+////	supprimerS un client By id
+//	@DeleteMapping("/clients/{id}/delete")
+//	ResponseEntity<Void> deleteClient(@PathVariable Integer id) {
+//		Optional<Client> findClientbyid = clientDao.findById(id);
+//		if (findClientbyid.isPresent()) {
+//			clientDao.deleteById(id);
+//			return ResponseEntity.ok().build();
+//		}
+//
+//		return ResponseEntity.noContent().build();
+//	}
+	
+	
+//	supprimerS un clients By id
 	@DeleteMapping("/clients/{id}/delete")
 	ResponseEntity<Void> deleteClient(@PathVariable Integer id) {
-		Optional<Client> findClientbyid = clientDao.findById(id);
-		if (findClientbyid.isPresent()) {
-			clientDao.deleteById(id);
-			return ResponseEntity.ok().build();
-		}
+		Optional<Object> clt = clientDao.findById(id).map(client -> {
+			client.setStatus("0");
+			Client clt1 = clientDao.save(client);
 
-		return ResponseEntity.noContent().build();
+			return ResponseEntity.ok(clt1);
+		});
+		if (!clt.isPresent())
+			return ResponseEntity.noContent().build();
+
+		return ResponseEntity.ok().build();
 	}
 }

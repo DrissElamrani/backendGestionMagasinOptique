@@ -21,6 +21,14 @@ public class Lentille extends Produit {
 	/** @pdOid d712eda1-2f31-406d-bd04-d22773811e20 */
 	private String type;
 
+	private String status;
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public Float getSph() {
 		return sph;
 	}

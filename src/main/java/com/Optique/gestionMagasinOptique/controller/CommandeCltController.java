@@ -90,6 +90,7 @@ public class CommandeCltController {
 		CommandeClt commandeclt =new CommandeClt();
 		commandeclt.setClient(clt);
 		commandeclt.setDateCommande(getDateNow());
+		commandeclt.setStatus("1");
 		CommandeClt comndlt = commandeCltDao.save(commandeclt);
 		if (comndlt == null)
 			return ResponseEntity.noContent().build();
@@ -117,15 +118,29 @@ public class CommandeCltController {
 
 		return ResponseEntity.ok().build();
 	}
-//	supprimerS un commandeClt By id
+////	supprimerS un commandeClt By id
+//	@DeleteMapping("/commandeClt/{id}/delete")
+//	ResponseEntity<Void> deleteClient(@PathVariable Integer id) {
+//		Optional<CommandeClt> findcommandeCltbyid = commandeCltDao.findById(id);
+//		if (findcommandeCltbyid.isPresent()) {
+//			commandeCltDao.deleteById(id);
+//			return ResponseEntity.ok().build();
+//		}
+//
+//		return ResponseEntity.noContent().build();
+//	}
+	
 	@DeleteMapping("/commandeClt/{id}/delete")
-	ResponseEntity<Void> deleteClient(@PathVariable Integer id) {
-		Optional<CommandeClt> findcommandeCltbyid = commandeCltDao.findById(id);
-		if (findcommandeCltbyid.isPresent()) {
-			commandeCltDao.deleteById(id);
-			return ResponseEntity.ok().build();
-		}
+	ResponseEntity<Void> deletecommandeClt(@PathVariable Integer id) {
+		Optional<Object> comndclt = commandeCltDao.findById(id).map(commandeclt -> {
+			commandeclt.setStatus("0");
+			CommandeClt cmndClt = commandeCltDao.save(commandeclt);
 
-		return ResponseEntity.noContent().build();
+			return ResponseEntity.ok(cmndClt);
+		});
+		if (!comndclt.isPresent())
+			return ResponseEntity.noContent().build();
+
+		return ResponseEntity.ok().build();
 	}
 }

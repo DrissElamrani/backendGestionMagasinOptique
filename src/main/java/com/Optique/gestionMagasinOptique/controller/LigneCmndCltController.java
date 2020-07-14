@@ -60,7 +60,7 @@ public class LigneCmndCltController {
 //	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@GetMapping(value = "/ligneCmndClt/list")
 	public List<LigneCmndClt> listligneCmndCltAll() {
-		List<LigneCmndClt> listlignecmndclt = LigneCmndCltdao.findAll();
+		List<LigneCmndClt> listlignecmndclt = LigneCmndCltdao.listLigneCmndClt();
 		return listlignecmndclt;
 	}
 	
@@ -88,6 +88,7 @@ public class LigneCmndCltController {
 		commandeclt.setIdCmdeeClt(idCmndClt);
 		lignecmndclt.setCommandeClt(commandeclt);
 		lignecmndclt.setProduitB(prod);
+		lignecmndclt.setStatus("1");
 		LigneCmndClt comndlt = LigneCmndCltdao.save(lignecmndclt);
 		if (comndlt == null)
 			return ResponseEntity.noContent().build();
@@ -118,15 +119,29 @@ public class LigneCmndCltController {
 
 		return ResponseEntity.ok().build();
 	}
-//	supprimerS un ligneCmndClt By id
+////	supprimerS un ligneCmndClt By id
+//	@DeleteMapping("/ligneCmndClt/{id}/delete")
+//	ResponseEntity<Void> deleteligneCmndClt(@PathVariable Integer id) {
+//		Optional<LigneCmndClt> findcommandeCltbyid = LigneCmndCltdao.findById(id);
+//		if (findcommandeCltbyid.isPresent()) {
+//			LigneCmndCltdao.deleteById(id);
+//			return ResponseEntity.ok().build();
+//		}
+//
+//		return ResponseEntity.noContent().build();
+//	}
+	
 	@DeleteMapping("/ligneCmndClt/{id}/delete")
 	ResponseEntity<Void> deleteligneCmndClt(@PathVariable Integer id) {
-		Optional<LigneCmndClt> findcommandeCltbyid = LigneCmndCltdao.findById(id);
-		if (findcommandeCltbyid.isPresent()) {
-			LigneCmndCltdao.deleteById(id);
-			return ResponseEntity.ok().build();
-		}
+		Optional<Object> ligcomndclt = LigneCmndCltdao.findById(id).map(lignecomndclt -> {
+			lignecomndclt.setStatus("0");
+			LigneCmndClt cmndClt = LigneCmndCltdao.save(lignecomndclt);
 
-		return ResponseEntity.noContent().build();
+			return ResponseEntity.ok(cmndClt);
+		});
+		if (!ligcomndclt.isPresent())
+			return ResponseEntity.noContent().build();
+
+		return ResponseEntity.ok().build();
 	}
 }

@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.Optique.gestionMagasinOptique.model.Client;
+import com.Optique.gestionMagasinOptique.model.LunetteSolaire;
 import com.Optique.gestionMagasinOptique.model.Monture;
 @Repository
 public interface MontureDao extends JpaRepository<Monture, Integer> {
@@ -23,10 +24,8 @@ public interface MontureDao extends JpaRepository<Monture, Integer> {
 //	 public List<Client> searchClient(@Param("id") int id);
 
 	 
-//	 @Transactional
-//	 @Modifying
-//	 @org.springframework.data.jpa.repository.Query("DELETE FROM Client c WHERE c.idClt=:id")
-//	 public Integer remove(@Param("id") int id);
+	 @org.springframework.data.jpa.repository.Query("select m FROM Monture m WHERE m.status='1'")
+	 public List<Monture> listMonture();
 //	 
 	 
 
