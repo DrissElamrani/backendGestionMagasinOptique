@@ -17,7 +17,7 @@ public interface CommandeCltDao extends JpaRepository<CommandeClt, Integer> {
 	
 	 public CommandeClt findById(int id);
 	 
-		@org.springframework.data.jpa.repository.Query("SELECT c FROM CommandeClt c join FETCH c.client WHERE c.client.idClt=:idClt")
+		@org.springframework.data.jpa.repository.Query("SELECT c FROM CommandeClt c join FETCH c.client WHERE c.client.idClt=:idClt and c.status='1'")
 		public List<CommandeClt> findAllCommandeCltByClt(@Param("idClt") int idClt);
 
 //	 String req="SELECT nom FROM Client c WHERE TO_DATE('c.dateCreation', 'YYYY/MM/DD') between  TO_DATE("+datedebut+", 'YYYY/MM/DD') and TO_DATE("+datefin+", 'YYYY/MM/DD')";
@@ -27,11 +27,8 @@ public interface CommandeCltDao extends JpaRepository<CommandeClt, Integer> {
 //	 public List<Client> searchClient(@Param("id") int id);
 
 	 
-//	 @Transactional
-//	 @Modifying
-//	 @org.springframework.data.jpa.repository.Query("DELETE FROM Client c WHERE c.idClt=:id")
-//	 public Integer remove(@Param("id") int id);
-//	 
+		 @org.springframework.data.jpa.repository.Query("select c FROM CommandeClt c WHERE c.status='1'")
+		 public List<CommandeClt> listCommandeClt();
 	 
 
 }

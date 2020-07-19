@@ -23,6 +23,16 @@ public class CommandeClt {
 	@JoinColumn(name = "idClt")
 	private Client client;
 
+	
+	private String status;
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public int getIdCmdeeClt() {
 		return idCmdeeClt;
 	}

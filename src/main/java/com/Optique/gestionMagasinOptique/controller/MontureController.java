@@ -25,6 +25,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.Optique.gestionMagasinOptique.dao.MontureDao;
 import com.Optique.gestionMagasinOptique.dao.JournalUserDao;
+import com.Optique.gestionMagasinOptique.model.LunetteSolaire;
 import com.Optique.gestionMagasinOptique.model.Monture;
 //import com.Optique.gestionMagasinOptique.model.UserJournals;
 
@@ -59,7 +60,7 @@ public class MontureController {
 	// get List montures
 	@GetMapping(value = "/montures/list")
 	public List<Monture> listmontures() {
-		List<Monture> listmonture = montureDao.findAll();
+		List<Monture> listmonture = montureDao.listMonture();
 		return listmonture;
 	}
 
@@ -75,6 +76,7 @@ public class MontureController {
 	@PostMapping(value = "/montures/create")
 	public ResponseEntity<Void> ajoutermonture(@RequestBody Monture monture) {
 		monture.setDateCreation(getDateNow());
+		monture.setStatus("1");
 		Monture mon = montureDao.save(monture);
 		if (mon == null)
 			return ResponseEntity.noContent().build();
@@ -103,14 +105,29 @@ public class MontureController {
 
 		return ResponseEntity.ok().build();
 	}
-//	supprimerS un monture By id
-	@DeleteMapping("/montures/{id}/delete")
-	ResponseEntity<Void> deletemonture(@PathVariable Integer id) {
-		Optional<Monture> findmonturebyid = montureDao.findById(id);
-		if (findmonturebyid.isPresent()) {
-			montureDao.deleteById(id);
-		}
+////	supprimerS un monture By id
+//	@DeleteMapping("/montures/{id}/delete")
+//	ResponseEntity<Void> deletemonture(@PathVariable Integer id) {
+//		Optional<Monture> findmonturebyid = montureDao.findById(id);
+//		if (findmonturebyid.isPresent()) {
+//			montureDao.deleteById(id);
+//		}
+//
+//		return ResponseEntity.noContent().build();
+//	}
+	
+////supprimerS un monture By id
+   @DeleteMapping("/montures/{id}/delete")
+	ResponseEntity<Void> supprimerMonture (@PathVariable Integer id) {
+		Optional<Object> mon = montureDao.findById(id).map(monture -> {
+			monture.setStatus("0");
+			Monture monture1 = montureDao.save(monture);
 
-		return ResponseEntity.noContent().build();
+			return ResponseEntity.ok(monture1);
+		});
+		if (!mon.isPresent())
+			return ResponseEntity.noContent().build();
+
+		return ResponseEntity.ok().build();
 	}
 }

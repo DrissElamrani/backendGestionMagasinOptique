@@ -33,7 +33,16 @@ public class Fournisseur {
 	private String dateCreation;
 	/** @pdOid b4bf7c31-ccf4-4e83-8d50-4ec485e0f994 */
 	private String dateModification;
+	
+	private String status;
+	
+	public String getStatus() {
+		return status;
+	}
 
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public int getIdFourn() {
 		return idFourn;
 	}

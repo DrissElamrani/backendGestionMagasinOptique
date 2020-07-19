@@ -21,9 +21,15 @@ public class ReglementFourn {
 	/** @pdOid 97134b82-aaaf-470e-8ce9-580207233d08 */
 	private float montantRest;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idFourn")
-	private Fournisseur fournisseur;
+	private String status;
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	public int getIdReglmFourn() {
 		return idReglmFourn;
@@ -49,11 +55,11 @@ public class ReglementFourn {
 		this.montantRest = montantRest;
 	}
 
-	public Fournisseur getFournisseur() {
-		return fournisseur;
-	}
-
-	public void setFournisseur(Fournisseur fournisseur) {
-		this.fournisseur = fournisseur;
-	}
+//	public Fournisseur getFournisseur() {
+//		return fournisseur;
+//	}
+//
+//	public void setFournisseur(Fournisseur fournisseur) {
+//		this.fournisseur = fournisseur;
+//	}
 }

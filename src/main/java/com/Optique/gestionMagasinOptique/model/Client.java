@@ -37,9 +37,17 @@ public class Client {
 	/** @pdOid fd2aae80-c4c6-444c-b06b-441ee90dfd6c */
 	private String remarque;
 	private String email;
-	// @Length(min=9, max=10, message = "le Numero de telephone doit étre égale 10
-	// chiffre")
 	private String telephone;
+	
+	private String status;
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	public String getDateModification() {
 		return dateModification;

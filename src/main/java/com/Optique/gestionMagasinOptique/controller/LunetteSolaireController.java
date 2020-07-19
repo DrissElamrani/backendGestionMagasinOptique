@@ -26,6 +26,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.Optique.gestionMagasinOptique.dao.MontureDao;
 import com.Optique.gestionMagasinOptique.dao.JournalUserDao;
 import com.Optique.gestionMagasinOptique.dao.LunetteSolaireDao;
+import com.Optique.gestionMagasinOptique.model.LigneReglmClt;
 import com.Optique.gestionMagasinOptique.model.LunetteSolaire;
 import com.Optique.gestionMagasinOptique.model.Monture;
 //import com.Optique.gestionMagasinOptique.model.UserJournals;
@@ -55,7 +56,7 @@ public class LunetteSolaireController {
 	// get List LunetteSolaire
 	@GetMapping(value = "/lunettesolaires/list")
 	public List<LunetteSolaire> listlunettesolaire() {
-		List<LunetteSolaire> listlunettesolaire = lunettesolairedao.findAll();
+		List<LunetteSolaire> listlunettesolaire = lunettesolairedao.listLunetteSolaire();
 		return listlunettesolaire;
 	}
 
@@ -71,6 +72,7 @@ public class LunetteSolaireController {
 	@PostMapping(value = "/lunettesolaires/create")
 	public ResponseEntity<Void> ajouterLunetteSolaire(@RequestBody LunetteSolaire lunettesolaire) {
 		lunettesolaire.setDateCreation(getDateNow());
+		lunettesolaire.setStatus("1");
 		LunetteSolaire lunettesol = lunettesolairedao.save(lunettesolaire);
 		if (lunettesol == null)
 			return ResponseEntity.noContent().build();
@@ -99,14 +101,29 @@ public class LunetteSolaireController {
 
 		return ResponseEntity.ok().build();
 	}
-//	supprimerS un LunetteSolaire By id
-	@DeleteMapping("/lunettesolaires/{id}/delete")
-	ResponseEntity<Void> deleteLunetteSolaire(@PathVariable Integer id) {
-		Optional<LunetteSolaire> findlunettesolairesbyid = lunettesolairedao.findById(id);
-		if (findlunettesolairesbyid.isPresent()) {
-			lunettesolairedao.deleteById(id);
-		}
+////	supprimerS un LunetteSolaire By id
+//	@DeleteMapping("/lunettesolaires/{id}/delete")
+//	ResponseEntity<Void> deleteLunetteSolaire(@PathVariable Integer id) {
+//		Optional<LunetteSolaire> findlunettesolairesbyid = lunettesolairedao.findById(id);
+//		if (findlunettesolairesbyid.isPresent()) {
+//			lunettesolairedao.deleteById(id);
+//		}
+//
+//		return ResponseEntity.noContent().build();
+//	}
+	
+////supprimerS un LunetteSolaire By id
+   @DeleteMapping("/lunettesolaires/{id}/delete")
+	ResponseEntity<Void> supprimerlunette (@PathVariable Integer id) {
+		Optional<Object> lunetteSol = lunettesolairedao.findById(id).map(lunetteS -> {
+			lunetteS.setStatus("0");
+			LunetteSolaire lunettesolaire = lunettesolairedao.save(lunetteS);
 
-		return ResponseEntity.noContent().build();
+			return ResponseEntity.ok(lunettesolaire);
+		});
+		if (!lunetteSol.isPresent())
+			return ResponseEntity.noContent().build();
+
+		return ResponseEntity.ok().build();
 	}
 }

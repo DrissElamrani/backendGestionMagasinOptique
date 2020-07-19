@@ -22,7 +22,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.Optique.gestionMagasinOptique.dao.FournisseurDao;
+import com.Optique.gestionMagasinOptique.model.Client;
 import com.Optique.gestionMagasinOptique.model.Fournisseur;
+import com.Optique.gestionMagasinOptique.model.LigneReglmClt;
 
 /**
  * @author pcuser9
@@ -55,7 +57,7 @@ public class FournisseurController {
 	// fournisseurs
 	@GetMapping(value = "/fournisseurs/list")
 	public List<Fournisseur> listfournisseurs() {
-		List<Fournisseur> listfournisseur = fournisseurDao.findAll();
+		List<Fournisseur> listfournisseur = fournisseurDao.listFournisseur();
 		return listfournisseur;
 	}
 
@@ -73,6 +75,7 @@ public class FournisseurController {
 	@PostMapping(value = "/fournisseurs/create")
 	public ResponseEntity<Void> ajouterFournisseur(@RequestBody Fournisseur fournisseur) {
 		fournisseur.setDateCreation(getDateNow());
+		fournisseur.setStatus("1");
 		Fournisseur fourn = fournisseurDao.save(fournisseur);
 		if (fourn == null)
 			return ResponseEntity.noContent().build();
@@ -105,15 +108,30 @@ public class FournisseurController {
 
 		return ResponseEntity.ok().build();
 	}
-//	Supprimer un fournisseur By id
+////	Supprimer un fournisseur By id
+//	@DeleteMapping("/fournisseurs/{id}/delete")
+//	ResponseEntity<Void> deletefournisseur(@PathVariable Integer id) {
+//		Optional<Fournisseur> findfournisseurbyid = fournisseurDao.findById(id);
+//		if (findfournisseurbyid.isPresent()) {
+//			fournisseurDao.deleteById(id);
+//			return ResponseEntity.ok().build();
+//		}
+//
+//		return ResponseEntity.noContent().build();
+//	}
+	
+//	supprimerS un fournisseur By id
 	@DeleteMapping("/fournisseurs/{id}/delete")
-	ResponseEntity<Void> deletefournisseur(@PathVariable Integer id) {
-		Optional<Fournisseur> findfournisseurbyid = fournisseurDao.findById(id);
-		if (findfournisseurbyid.isPresent()) {
-			fournisseurDao.deleteById(id);
-			return ResponseEntity.ok().build();
-		}
+	ResponseEntity<Void> deleteFournisseurs(@PathVariable Integer id) {
+		Optional<Object> four = fournisseurDao.findById(id).map(fournisseur -> {
+			fournisseur.setStatus("0");
+			Fournisseur clt1 = fournisseurDao.save(fournisseur);
 
-		return ResponseEntity.noContent().build();
+			return ResponseEntity.ok(clt1);
+		});
+		if (!four.isPresent())
+			return ResponseEntity.noContent().build();
+
+		return ResponseEntity.ok().build();
 	}
 }

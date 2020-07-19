@@ -11,6 +11,15 @@ public class LunetteSolaire extends Produit {
 	/** @pdOid edba20b4-77f8-4965-aca4-f6bd1d8eb31f */
 	private String type;
 
+	private String status;
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public String getCategorie() {
 		return categorie;
 	}

@@ -24,8 +24,8 @@ public interface ClientDao extends JpaRepository<Client, Integer> {
 	 
 //	 @Transactional
 //	 @Modifying
-//	 @org.springframework.data.jpa.repository.Query("DELETE FROM Client c WHERE c.idClt=:id")
-//	 public Integer remove(@Param("id") int id);
+	 @org.springframework.data.jpa.repository.Query("select c FROM Client c WHERE c.status='1'")
+	 public List<Client> listClient();
 //	 
 	 
 

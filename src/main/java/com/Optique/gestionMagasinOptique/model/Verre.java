@@ -23,6 +23,15 @@ public class Verre extends Produit {
 	/** @pdOid 60d8f6d1-55ac-40d8-8a91-170fee865bee */
 	private String oeilGaucheDroit;
 
+	private String status;
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public Float getSph() {
 		return sph;
 	}

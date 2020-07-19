@@ -21,10 +21,20 @@ public class ReglementClt {
 	/** @pdOid 83bcf6a0-3662-458d-94ae-b759e577b6e3 */
 	private float montantRest;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idClt")
-	private Client client;
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "idClt")
+//	private Client client;
 
+	private String status;
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 	public int getIdReglmClt() {
 		return idReglmClt;
 	}
@@ -49,11 +59,11 @@ public class ReglementClt {
 		this.montantRest = montantRest;
 	}
 
-	public Client getClient() {
-		return client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
-	}
+//	public Client getClient() {
+//		return client;
+//	}
+//
+//	public void setClient(Client client) {
+//		this.client = client;
+//	}
 }

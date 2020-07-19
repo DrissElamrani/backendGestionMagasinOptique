@@ -12,16 +12,16 @@ import org.springframework.stereotype.Repository;
 import com.Optique.gestionMagasinOptique.model.Client;
 import com.Optique.gestionMagasinOptique.model.CommandeClt;
 import com.Optique.gestionMagasinOptique.model.LigneCmndClt;
+import com.Optique.gestionMagasinOptique.model.LigneReglmClt;
 import com.Optique.gestionMagasinOptique.model.UserJournals;
 @Repository
-public interface LigneCmndCltDao extends JpaRepository<LigneCmndClt, Integer> {
+public interface LigneReglmCltDao extends JpaRepository<LigneReglmClt, Integer> {
 	
-	 public LigneCmndClt findById(int id);
+	 public LigneReglmClt findById(int id);
 	 
-		@org.springframework.data.jpa.repository.Query("SELECT lc FROM LigneCmndClt lc join FETCH lc.commandeClt WHERE lc.commandeClt.idCmdeeClt=:idCmndClt and lc.status='1'")
-		public List<LigneCmndClt> findAllLigneCmndCltByIdCmnd(@Param("idCmndClt") int idCmndClt);
- 
-		 @org.springframework.data.jpa.repository.Query("select lc FROM LigneCmndClt lc WHERE lc.status='1'")
-		 public List<LigneCmndClt> listLigneCmndClt();
+//		@org.springframework.data.jpa.repository.Query("SELECT lc FROM LigneCmndClt lc join FETCH lc.commandeClt WHERE lc.commandeClt.idCmdeeClt=:idCmndClt")
+//		public List<LigneCmndClt> findAllLigneCmndCltByIdCmnd(@Param("idCmndClt") int idCmndClt);
+// 
+	 
 
 }

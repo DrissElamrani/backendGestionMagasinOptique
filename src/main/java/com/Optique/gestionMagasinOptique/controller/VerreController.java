@@ -27,6 +27,7 @@ import com.Optique.gestionMagasinOptique.dao.MontureDao;
 import com.Optique.gestionMagasinOptique.dao.VerreDao;
 import com.Optique.gestionMagasinOptique.dao.JournalUserDao;
 import com.Optique.gestionMagasinOptique.model.Monture;
+import com.Optique.gestionMagasinOptique.model.User;
 import com.Optique.gestionMagasinOptique.model.Verre;
 //import com.Optique.gestionMagasinOptique.model.UserJournals;
 
@@ -55,7 +56,7 @@ public class VerreController {
 	// get List montures
 	@GetMapping(value = "/verres/list")
 	public List<Verre> listverres() {
-		List<Verre> listverre = verredao.findAll();
+		List<Verre> listverre = verredao.listVerre();
 		return listverre;
 	}
 
@@ -71,6 +72,7 @@ public class VerreController {
 	@PostMapping(value = "/verres/create")
 	public ResponseEntity<Void> ajouterVerre(@RequestBody Verre verre) {
 		verre.setDateCreation(getDateNow());
+		verre.setStatus("1");
 		Verre ver = verredao.save(verre);
 		if (ver == null)
 			return ResponseEntity.noContent().build();
@@ -105,14 +107,30 @@ public class VerreController {
 
 		return ResponseEntity.ok().build();
 	}
-//	supprimerS un verre By id
+////	supprimerS un verre By id
+//	@DeleteMapping("/verres/{id}/delete")
+//	ResponseEntity<Void> deleteverres(@PathVariable Integer id) {
+//		Optional<Verre> findVerrebyid = verredao.findById(id);
+//		if (findVerrebyid.isPresent()) {
+//			verredao.deleteById(id);
+//		}
+//
+//		return ResponseEntity.noContent().build();
+//	}
+	
+	
+////supprimerS un verre By id
 	@DeleteMapping("/verres/{id}/delete")
-	ResponseEntity<Void> deleteverres(@PathVariable Integer id) {
-		Optional<Verre> findVerrebyid = verredao.findById(id);
-		if (findVerrebyid.isPresent()) {
-			verredao.deleteById(id);
-		}
+	ResponseEntity<Void> supprimerVerre (@PathVariable Integer id) {
+		Optional<Object> vv = verredao.findById(id).map(verre -> {
+			verre.setStatus("0");
+			Verre verre1 = verredao.save(verre);
 
-		return ResponseEntity.noContent().build();
+			return ResponseEntity.ok(verre1);
+		});
+		if (!vv.isPresent())
+			return ResponseEntity.noContent().build();
+
+		return ResponseEntity.ok().build();
 	}
 }

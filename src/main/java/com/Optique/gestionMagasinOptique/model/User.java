@@ -37,7 +37,15 @@ public class User {
 	private String motdepasse;
 	private String dateCreation;
 	private String datemodification;
+	private String status;
+	
+	public String getStatus() {
+		return status;
+	}
 
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public String getDateCreation() {
 		return dateCreation;
 	}

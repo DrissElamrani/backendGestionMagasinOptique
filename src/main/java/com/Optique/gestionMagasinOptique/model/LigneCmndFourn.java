@@ -28,6 +28,15 @@ public class LigneCmndFourn {
 	@JoinColumn(name = "idCmdeeFourn")
 	private CommandeFourn commandeFourn;
 
+	private String status;
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public int getId() {
 		return id;
 	}

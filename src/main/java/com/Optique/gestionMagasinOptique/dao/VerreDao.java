@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.Optique.gestionMagasinOptique.model.Client;
 import com.Optique.gestionMagasinOptique.model.Monture;
+import com.Optique.gestionMagasinOptique.model.User;
 import com.Optique.gestionMagasinOptique.model.Verre;
 @Repository
 public interface VerreDao extends JpaRepository<Verre, Integer> {
@@ -24,10 +25,8 @@ public interface VerreDao extends JpaRepository<Verre, Integer> {
 //	 public List<Client> searchClient(@Param("id") int id);
 
 	 
-//	 @Transactional
-//	 @Modifying
-//	 @org.springframework.data.jpa.repository.Query("DELETE FROM Client c WHERE c.idClt=:id")
-//	 public Integer remove(@Param("id") int id);
+	 @org.springframework.data.jpa.repository.Query("select v FROM Verre v WHERE v.status='1'")
+	 public List<Verre> listVerre();
 //	 
 	 
 

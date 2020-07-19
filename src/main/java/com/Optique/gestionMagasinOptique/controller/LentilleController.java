@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.Optique.gestionMagasinOptique.dao.LentilleDao;
+import com.Optique.gestionMagasinOptique.model.Client;
 import com.Optique.gestionMagasinOptique.model.Lentille;
 
 /**
@@ -51,7 +52,7 @@ public class LentilleController {
 	// get List montures
 	@GetMapping(value = "/lentilles/list")
 	public List<Lentille> listlentilles() {
-		List<Lentille> listlentilles = lentillesDao.findAll();
+		List<Lentille> listlentilles = lentillesDao.listLentille();
 		return listlentilles;
 	}
 
@@ -67,6 +68,7 @@ public class LentilleController {
 	@PostMapping(value = "/lentilles/create")
 	public ResponseEntity<Void> ajouterlentille(@RequestBody Lentille lentille) {
 		lentille.setDateCreation(getDateNow());
+		lentille.setStatus("1");
 		Lentille len = lentillesDao.save(lentille);
 		if (len == null)
 			return ResponseEntity.noContent().build();
@@ -101,14 +103,29 @@ public class LentilleController {
 
 		return ResponseEntity.ok().build();
 	}
-//	supprimerS un monture By id
+////	supprimerS un monture By id
+//	@DeleteMapping("/lentilles/{id}/delete")
+//	ResponseEntity<Void> deletelentilles(@PathVariable Integer id) {
+//		Optional<Lentille> findmonturebyid = lentillesDao.findById(id);
+//		if (findmonturebyid.isPresent()) {
+//			lentillesDao.deleteById(id);
+//		}
+//
+//		return ResponseEntity.noContent().build();
+//	}
+	
+//	supprimerS un lentilles By id
 	@DeleteMapping("/lentilles/{id}/delete")
-	ResponseEntity<Void> deletelentilles(@PathVariable Integer id) {
-		Optional<Lentille> findmonturebyid = lentillesDao.findById(id);
-		if (findmonturebyid.isPresent()) {
-			lentillesDao.deleteById(id);
-		}
+	ResponseEntity<Void> deleteLentilles(@PathVariable Integer id) {
+		Optional<Object> lentil = lentillesDao.findById(id).map(lentille -> {
+			lentille.setStatus("0");
+			Lentille Lent = lentillesDao.save(lentille);
 
-		return ResponseEntity.noContent().build();
+			return ResponseEntity.ok(Lent);
+		});
+		if (!lentil.isPresent())
+			return ResponseEntity.noContent().build();
+
+		return ResponseEntity.ok().build();
 	}
 }
