@@ -66,10 +66,10 @@ public class UserController {
 	@PostMapping(value="/user/auth")
 	public ResponseEntity<User> auth(@RequestBody User user) {
 		
-		/*User user = userDao.getUserByloginPass(login, pass);
-		if (user==null)
-			return ResponseEntity.notFound().build();*/
-		return ResponseEntity.ok().body(user);
+		User authUser = userDao.getUserByloginPass(user.getLogin(), user.getMotdepasse());
+		if (authUser==null)
+			return ResponseEntity.notFound().build();
+		return ResponseEntity.ok().body(authUser);
 	}
 
 	// ajouter un User
