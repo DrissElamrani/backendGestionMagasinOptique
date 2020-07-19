@@ -56,12 +56,12 @@ public class ProduitController {
 	String dateNow = formatdate.format(date);
 	return dateNow;
 	}
-//	// get List Produits
-//	@GetMapping(value = "/produits/list")
-//	public List<Produit> listProduits() {
-//		List<Produit> listProduit = produitDao.findAll();
-//		return listProduit;
-//	}
+	// get List Produits
+	@GetMapping(value = "/produits/list")
+	public List<Produit> listProduits() {
+		List<Produit> listProduit = produitDao.findAll();
+		return listProduit;
+	}
 //
 //	// get Produit by id
 //	@GetMapping(value = "/Produits/{id}")
